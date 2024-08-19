@@ -1,0 +1,103 @@
+body{
+    background: rgb(186, 177, 177);
+}
+
+.parent{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   justify-items: center;
+}
+
+.heading{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    border-bottom: 2px solid palevioletred;
+}
+
+
+.user-input{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    gap: 50px;
+}  
+
+.user-input>div{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-input>div>label{
+    color: rgb(154, 16, 196);
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.user-input>div>input{
+    padding:5px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.button{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button>button{
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    background: white;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#newBuilding{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+#newBuilding>div{
+    background-color: blue;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#newBuilding>div>div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#newBuilding>div>div>button{
+     width: 70px;
+     padding: 2px 12px;
+     background-color: rgb(18, 247, 102);
+     color: white;
+     font-weight: bold;
+     border-radius: 5px;
+     border: none;
+     outline: none;
+}
+
+
+#newBuilding>div:last-child>div {
+     display: flex;
+     background-color: red;
+}
+
+.floor_lift{
+    width: 60px;
+    height: 100px;
+    background: yellow;
+}
