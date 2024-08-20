@@ -5,22 +5,45 @@ body{
 .parent{
    display: flex;
    flex-direction: column;
-   justify-content: center;
-   justify-items: center;
+   padding-top: 30px;
+   align-items: center;
+   min-width: 100vw;
+   min-height: 100vh;
+   background-size: cover;
+}
+
+.container{
+    height: 40%;
+    width: 40%;
+    background: white;
+    border-radius: 5px;
+}
+
+.child-container{
+   padding: 0 40px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
 }
 
 .heading{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    border-bottom: 2px solid palevioletred;
+    background: rgb(56, 55, 55);
+    color: white;
+    border-radius: 5px;
+    margin-top: 0px;
+    top: 0;
+}
+
+.note{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
 .user-input{
     display: flex;
-    justify-content: center;
-    justify-items: center;
-    gap: 50px;
+    justify-content: space-between;
 }  
 
 .user-input>div{
@@ -29,22 +52,22 @@ body{
 }
 
 .user-input>div>label{
-    color: rgb(154, 16, 196);
-    font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(39, 38, 38);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-bottom: 10px;
-    text-align: center;
 }
 
 .user-input>div>input{
-    padding:5px 20px;
+    padding:8px 20px;
     border-radius: 5px;
     border: none;
     outline: none;
+    background: rgb(170, 169, 169);
 }
 
 .button{
     margin-top: 15px;
+    display: flex;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,50 +77,57 @@ body{
     padding: 10px 30px;
     border-radius: 5px;
     border: none;
-    background: white;
+    width: 100%;
+    color: white;
+    background:rgb(56, 55, 55);
     text-align: center;
     font-weight: bold;
     cursor: pointer;
 }
 
+
+
+
+
+
+
+
 #newBuilding{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 10px;
+    width: 100vw;
+    margin-top: 50px;
 }
 
 #newBuilding>div{
-    background-color: blue;
+    border: 2px solid rgb(37, 33, 33);
+    height: 80px;
     padding: 15px;
-    border-radius: 5px;
-}
-
-#newBuilding>div>div{
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+    justify-content: center;
 }
 
-#newBuilding>div>div>button{
-     width: 70px;
-     padding: 2px 12px;
-     background-color: rgb(18, 247, 102);
-     color: white;
-     font-weight: bold;
-     border-radius: 5px;
-     border: none;
-     outline: none;
+#newBuilding>div>button{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
-
-#newBuilding>div:last-child>div {
-     display: flex;
-     background-color: red;
+#newBuilding>div:last-child{
+    display: flex; 
+    flex-direction: row;
+    justify-content: start;
+    gap: 40px;
 }
 
 .floor_lift{
-    width: 60px;
-    height: 100px;
-    background: yellow;
+     background: yellow;
+     height: 100px;
+     width: 100px;
 }
+
+
+
+
