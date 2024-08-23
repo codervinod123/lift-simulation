@@ -89,18 +89,15 @@ body{
 
 
 
-
-
-
 #newBuilding{
     width: 100vw;
     margin-top: 50px;
+    box-sizing: border-box;
 }
 
 #newBuilding>div{
-    border: 2px solid rgb(37, 33, 33);
+    border: .1px solid rgb(37, 33, 33);
     height: 80px;
-    padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -116,17 +113,36 @@ body{
 }
 
 #newBuilding>div:last-child{
-    display: flex; 
+    display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: start; 
+    align-items: center;    
     gap: 40px;
 }
 
 .floor_lift{
      background: yellow;
-     height: 100px;
-     width: 100px;
+     height: 80px;
+     width: 60px;
+     position: relative;
 }
+
+
+
+@keyframes moveUp {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -244px;
+    }
+} 
+
+/* Add a class to trigger the animation */
+ /* #lift2{
+    border: 2px solid rgb(80, 12, 236);
+    animation: moveUp 3s ease forwards;
+} */
 
 
 

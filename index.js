@@ -4,22 +4,32 @@ function submitUserData() {
 
   for (let i=0; i<NO_OF_FLOOR; i++) {
     
-    const newFlat = document.createElement("div");
-    newFlat.setAttribute('id',`floor${i}`);
-    if (i == 0) {
-      newFlat.innerHTML = `<button><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-down.png" alt="circled-chevron-down"/></button>`;
-    } else if (i == NO_OF_FLOOR - 1) {
-      newFlat.innerHTML = `<button><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/></button>`;
-    } else {
-      newFlat.innerHTML =
-        `<button><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-down.png" alt="circled-chevron-down"/></button><button><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/></button>`;
+    // createing the floor in a building
+    const floor = document.createElement("div");
+    floor.setAttribute('id',`floor${i}`);
+    
+    if(i!=0){
+       const floorButton=document.createElement('button');
+       floorButton.setAttribute('id',`upButton${i}`)
+       floorButton.innerHTML = `<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/>`;
+       floorButton.setAttribute('onclick',`handleClickUp(${i})`);
+       floor.appendChild(floorButton);
     }
+    if(i!=NO_OF_FLOOR-1){
+       const floorButton=document.createElement('button');
+       floorButton.setAttribute('id',`downButton${i}`)
+       floorButton.innerHTML = `<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-down.png" alt="circled-chevron-down" alt="circled-chevron-up"/>`;
+       floorButton.setAttribute('onclick',`handleClickDown(${i})`);
+       floor.appendChild(floorButton);
+     }
     const building = document.getElementById("newBuilding");
-    building.appendChild(newFlat);
+    building.appendChild(floor);
   }
 
+  // floor where all the lifts will stays by default
   const groundFLoor=document.querySelector(`#floor${NO_OF_FLOOR-1}`);
 
+  // creating the lift as per requirement
   for(let i=0; i<NO_OF_LIFT; i++){
         const newLift=document.createElement('div');
         newLift.setAttribute('class','floor_lift')
@@ -28,3 +38,20 @@ function submitUserData() {
   }
 
 }
+
+
+function handleClickDown(index){
+   const clickedFloor=document.getElementById(`downButton${index}`);
+   console.log(clickedFloor);
+}
+
+function handleClickUp(index){
+  const clickedFloor=document.getElementById(`upButton${index}`);
+  const liftTosendup=document.getElementById(`lift${index}`);
+  console.log(index,liftTosendup);
+  console.log(index);
+  liftTosendup.style.animation = `moveUp ${index*3}s ease forwards`;
+}
+
+
+
