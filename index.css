@@ -1,3 +1,8 @@
+:root {
+    --main-movement: 3;
+}
+
+
 body{
     background: rgb(186, 177, 177);
 }
@@ -86,13 +91,13 @@ body{
 }
 
 
-
-
-
 #newBuilding{
     width: 100vw;
     margin-top: 50px;
     box-sizing: border-box;
+    display: flex;
+    /* flex-direction: column; */
+    flex-direction: column-reverse;
 }
 
 #newBuilding>div{
@@ -112,7 +117,7 @@ body{
     cursor: pointer;
 }
 
-#newBuilding>div:last-child{
+#newBuilding>div:first-child{
     display: flex;
     flex-direction: row;
     justify-content: start; 
@@ -128,22 +133,11 @@ body{
 }
 
 
-
-@keyframes moveUp {
-    0% {
-        top: 0;
-    }
-    100% {
-        top: -244px;
-    }
-} 
-
-/* Add a class to trigger the animation */
- /* #lift2{
-    border: 2px solid rgb(80, 12, 236);
-    animation: moveUp 3s ease forwards;
-} */
-
-
-
+.liftsss{
+    height: 80px;
+    width: 60px;
+    background: goldenrod;
+    border: 1px solid rebeccapurple;
+    
+}
 
