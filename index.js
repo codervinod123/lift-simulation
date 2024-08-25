@@ -13,7 +13,17 @@ function createLift(id){
       element:null,
       // creation of lift
       createLiftElement:function(){ 
+
+         const leftDoor=document.createElement('div');
+         leftDoor.setAttribute('class','LeftDoor')
+         const RightDoor=document.createElement('div');
+         RightDoor.setAttribute('class','RightDoor')
+
          const liftElement = document.createElement('div');
+
+         liftElement.appendChild(leftDoor);
+         liftElement.appendChild(RightDoor);
+
          liftElement.classList.add('liftsss');
          this.element = liftElement;  
       },
@@ -51,6 +61,8 @@ function submitUserData() {
   }
   
   // based upon user input building and lift will be created
+  const building = document.getElementById("newBuilding");
+  building.innerHTML="";
   createBuildingAndLift(NO_OF_FLOOR,NO_OF_LIFT);
 }
 
@@ -114,7 +126,7 @@ function MoveLifts(targetFloor,direction) {
     //move the nearest lift to the requested floor ans set the status accordingly
     const currentStatus = targetFloor > closest.currentFloor ? "moving_up" : "moving_down";
     closest.setNewStatus(currentStatus);
-    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 1500;
+    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2000;
     updateLiftPositions(closest, targetFloor, timeToReach);
     setTimeout(() => {
         closest.updateFloorNo(targetFloor);
@@ -127,8 +139,8 @@ function MoveLifts(targetFloor,direction) {
            setTimeout(()=>{
               currentLift.classList.remove('closing-door');
               closest.setNewStatus("idle");
-           },3000)
-        }, 3000);
+           },1200)
+        }, 1200);
 
     }, timeToReach);
 } else {
@@ -146,7 +158,7 @@ function MoveLifts(targetFloor,direction) {
 
 function updateLiftPositions(lift, targetFloor, timeToReach) {
   lift.element.style.transitionDuration = `${timeToReach}ms`;
-  lift.element.style.transform = `translateY(-${targetFloor+targetFloor* 81}px)`;
+  lift.element.style.transform = `translateY(-${targetFloor * 80}px)`;
 }
 
 

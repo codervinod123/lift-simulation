@@ -14,6 +14,7 @@ body{
    align-items: center;
    min-width: 100vw;
    min-height: 100vh;
+   overflow: auto;
    background-size: cover;
 }
 
@@ -91,10 +92,13 @@ body{
 }
 
 
+
+
+
+
 #newBuilding{
     width: 100vw;
-
-     overflow-y: auto;
+    overflow-y: auto;
     margin-top: 50px;
     box-sizing: border-box;
     display: flex;
@@ -103,12 +107,13 @@ body{
 }
 
 #newBuilding>div{
-    border: .1px solid rgb(37, 33, 33);
+    border: 1px solid rgb(37, 33, 33);
     height: 80px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 #newBuilding>div>button{
@@ -141,7 +146,7 @@ body{
     min-width: 60px;
     background: goldenrod;
     border: 1px solid rebeccapurple;
-    
+    display: flex;
 }
 
 
@@ -152,9 +157,36 @@ body{
     background: transparent;
 }
 
-
-
-
 .closing-door{
-    background: goldenrod;
+    background: rgb(162, 0, 237);
+}
+
+.LeftDoor{
+    border-right: 1px solid black;
+    width: 30px;
+    height: 80px;
+    background-color: greenyellow;
+}
+
+.RightDoor{
+    border-left: 1px solid black;
+    width: 30px;
+    height: 80px;
+    background-color: greenyellow;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px) { /* Adjust the max-width as per your mobile breakpoint */
+    .user-input {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
