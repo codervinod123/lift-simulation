@@ -189,4 +189,11 @@ body{
         flex-direction: column;
         gap: 20px;
     }
+
+    .container{
+        height: 80%;
+        width: 80%;
+        background: white;
+        border-radius: 5px;
+    }
 }
