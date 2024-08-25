@@ -1,120 +1,142 @@
+// stores all the availabe lifts
 let lifts=[];
-let floors=[];
+// stores all the pending request
 let requestQueue=[];
 
 
-class Lift {
-  constructor(id) {
-      this.id = id;
-      this.currentFloor = 0;
-      this.status = 'idle'; //idle, moving_up, moving_down
-      this.element = this.createLiftElement();
+function createLift(id){
+  const lift={
+      id:id,
+      //idle moving_up moving_down
+      status:'idle',
+      currentFloor:0,
+      element:null,
+      // creation of lift
+      createLiftElement:function(){ 
+         const liftElement = document.createElement('div');
+         liftElement.classList.add('liftsss');
+         this.element = liftElement;  
+      },
+      // after reaching need to change the current position of lift
+      updateFloorNo:function(floor) {
+        this.currentFloor = floor;
+      },
+      // need ro chane accordingly idle moving_up moving_down
+      setNewStatus: function(status) {
+        this.status = status;
+      }
   }
-
-  createLiftElement() {
-      const liftElement = document.createElement('div');
-      liftElement.classList.add('liftsss');
-
-      const doorLeft = document.createElement('div');
-      doorLeft.classList.add('door', 'left-door');
-
-      const doorRight = document.createElement('div');
-      doorRight.classList.add('door', 'right-door');
-
-      liftElement.appendChild(doorLeft);
-      liftElement.appendChild(doorRight);
-
-      return liftElement;
-  }
-
-  updateFloor(floor) {
-      this.currentFloor = floor;
-  }
-
-  setStatus(status) {
-      this.status = status;
-  }
+  
+   lift.createLiftElement();
+   return lift;
 }
+
 
 function submitUserData() {
   
-  let floorcount = document.querySelector("#floor").value;
-  if(floorcount<2){
+  // no of Floor in a building by a user
+  let NO_OF_FLOOR = document.querySelector("#floor").value;
+  // atleast building should have 2 floors
+  if(NO_OF_FLOOR<2){
     alert("No of Floor should be atleast 2");
     return;
   }
 
-  let liftcount = document.querySelector("#lift").value;
-  if(liftcount<1){
+  // no of lift in a building by a user
+  let NO_OF_LIFT = document.querySelector("#lift").value;
+  // atleast 1 lift is mandatory
+  if(NO_OF_LIFT<1){
     alert("No of Lift should be atleast 1");
     return;
   }
   
-  createBuildingAndLift(floorcount,liftcount);
+  // based upon user input building and lift will be created
+  createBuildingAndLift(NO_OF_FLOOR,NO_OF_LIFT);
 }
 
-function createBuildingAndLift(floorcount,liftcount){
- 
+function createBuildingAndLift(NO_OF_FLOOR,NO_OF_LIFT){
   
-  for (let i = 0; i < floorcount; i++) {
-
-    // createing the floor in a building
+  // creating the floor in a building
+  for (let i = 0; i < NO_OF_FLOOR; i++) {
     const floor = document.createElement("div");
     floor.setAttribute('id', `floor${i}`);
     floor.setAttribute('class', 'floor');
     floor.dataset.floor=i;
-
     if (i != 0) {
       const floorButton = document.createElement('button');
       floorButton.setAttribute('id', `upButton${i}`)
       floorButton.innerHTML =`<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-down.png" alt="circled-chevron-down"/>`;
-      floorButton.setAttribute('onclick', `callLift(${i},'movingDown')`);
+      floorButton.setAttribute('onclick', `MoveLifts(${i},'movingDown')`);
       floor.appendChild(floorButton);
     }
-    if (i != floorcount - 1) {
+    if (i != NO_OF_FLOOR - 1) {
       const floorButton = document.createElement('button');
       floorButton.setAttribute('id', `downButton${i}`)
       floorButton.innerHTML =`<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/>`; 
-      floorButton.setAttribute('onclick', `callLift(${i},'movingUp')`);
+      floorButton.setAttribute('onclick', `MoveLifts(${i},'movingUp')`);
       floor.appendChild(floorButton);
     }
     const building = document.getElementById("newBuilding");
     building.appendChild(floor);
-    floors.push(floor);
   }
 
-  // floor where all the lifts will stays by default
+  // grounf floor will be the place where all the lifts will stays by default
   const groundFLoor = document.querySelector(`#floor0`);
   
-  // creating the lift as per requirement
-  for (let i = 0; i < liftcount; i++) {
-   
-    const lift = new Lift(i);
+  // creating the lift as per requirement with the help of createLift function
+  for (let i = 0; i < NO_OF_LIFT; i++) {   
+    const lift = createLift(i);
     lifts.push(lift);
-    lift.element.style.left = i * 100 + 'px';
-    const building = document.getElementById("newBuilding");
     groundFLoor.appendChild(lift.element);
-   
-    // const newLift = document.createElement('div');
-    // newLift.setAttribute('class', 'floor_lift')
-    // newLift.setAttribute('id', `lift${i}`);
-    // groundFLoor.appendChild(newLift);
-    // lifts.push(newLift);
   }
+
 }
+ 
 
+// logic to move the lift from one place to another place
+function MoveLifts(targetFloor,direction) {
+  let closest = null;
+  let minDistance = Infinity;
 
+  // getting the nearest idle lift
+  for (const lift of lifts) {
+      if (lift.status === "idle") {
+          const currentF= lift.currentFloor ;
+          const distance = Math.abs(currentF - targetFloor);
+          if (distance < minDistance) {
+              minDistance = distance;
+              closest = lift;
+          }
+      }
+  }
 
-function callLift(targetFloor,direction) {
-  console.log(targetFloor,direction);
-  const availableLift=findNearestAvailableLift(targetFloor,direction);
-  if (availableLift) {
-    moveLift(availableLift, targetFloor);
+  if (closest) {
+    //move the nearest lift to the requested floor ans set the status accordingly
+    const currentStatus = targetFloor > closest.currentFloor ? "moving_up" : "moving_down";
+    closest.setNewStatus(currentStatus);
+    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 1500;
+    updateLiftPositions(closest, targetFloor, timeToReach);
+    setTimeout(() => {
+        closest.updateFloorNo(targetFloor);
+      
+        const currentLift=closest.element;
+        currentLift.classList.add('opening-door');
+        setTimeout(() => {
+           currentLift.classList.remove('opening-door');
+           currentLift.classList.add('closing-door');
+           setTimeout(()=>{
+              currentLift.classList.remove('closing-door');
+              closest.setNewStatus("idle");
+           },3000)
+        }, 3000);
+
+    }, timeToReach);
 } else {
+    // checking is it in queue or not
     const alreadyInQueue = requestQueue.some(
         request => request.targetFloor === targetFloor && request.direction === direction
     );
-
+    // if it is not availabe in queue then it will be pushed to queue as a new entry otherwise it will be executed as soon as the lift get idle ststus
     if (!alreadyInQueue) {
         requestQueue.push({ targetFloor, direction });
     }
@@ -122,106 +144,22 @@ function callLift(targetFloor,direction) {
 }
 
 
-function findNearestAvailableLift(targetFloor, direction){
-  let closestLift = null;
-  let minDistance = Infinity;
-
-  for (const lift of lifts) {
-      if (lift.status === "idle") {
-          const distance = Math.abs(lift.currentFloor - targetFloor);
-          if (distance < minDistance) {
-              minDistance = distance;
-              closestLift = lift;
-          }
-      }
-  }
-  return closestLift;
-}
-
-
-function  moveLift(lift, targetFloor) {
-  const status = targetFloor > lift.currentFloor ? "moving_up" : "moving_down";
-  lift.setStatus(status);
-  const timeToReach = Math.abs(targetFloor - lift.currentFloor) * 2000;
-  updateLiftPositions(lift, targetFloor, timeToReach);
-  setTimeout(() => {
-      lift.updateFloor(targetFloor);
-      openAndCloseDoors(lift);
-  }, timeToReach);
-}
-
-
 function updateLiftPositions(lift, targetFloor, timeToReach) {
   lift.element.style.transitionDuration = `${timeToReach}ms`;
-  lift.element.style.transitionTimingFunction = "linear";
-  lift.element.style.transform = `translateY(-${targetFloor * 150}px)`;
+  lift.element.style.transform = `translateY(-${targetFloor+targetFloor* 81}px)`;
 }
 
 
-function openAndCloseDoors(lift) {
-  const liftElement = lift.element;
-  liftElement.classList.add('door-open');
-  setTimeout(() => {
-      liftElement.classList.remove('door-open');
-      liftElement.classList.add('door-close');
-      setTimeout(() => {
-          liftElement.classList.remove('door-close');
-          lift.setStatus("idle");
-          processQueue(); // Check and process the queue when a lift becomes idle
-      }, 2500); // 2.5 seconds for the doors to fully close
-  }, 2500); // 2.5 seconds for the doors to stay open
-}
 
-
+// checking any pending request
 function processQueue() {
   if (requestQueue.length > 0) {
-      const { targetFloor, direction } = requestQueue.shift(); // Get the next request from the queue
-      callLift(targetFloor, direction);
+      // Removing entry from queue and destructring taeget and direction
+      const { targetFloor, direction } = requestQueue.shift();
+      //again calling the Movelifts dunction according to queue entry
+      MoveLifts(targetFloor, direction);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

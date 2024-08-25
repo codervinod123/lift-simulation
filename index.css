@@ -141,3 +141,17 @@ body{
     
 }
 
+
+
+.opening-door{
+    /* background-color: rgb(251, 250, 251); */
+    border: 1px solid black;
+    background: transparent;
+}
+
+
+
+
+.closing-door{
+    background: goldenrod;
+}
