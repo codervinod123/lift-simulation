@@ -93,6 +93,8 @@ body{
 
 #newBuilding{
     width: 100vw;
+
+     overflow-y: auto;
     margin-top: 50px;
     box-sizing: border-box;
     display: flex;
@@ -136,6 +138,7 @@ body{
 .liftsss{
     height: 80px;
     width: 60px;
+    min-width: 60px;
     background: goldenrod;
     border: 1px solid rebeccapurple;
     
