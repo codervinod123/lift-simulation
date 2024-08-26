@@ -16,6 +16,7 @@ function createLift(id){
 
          const leftDoor=document.createElement('div');
          leftDoor.setAttribute('class','LeftDoor')
+
          const RightDoor=document.createElement('div');
          RightDoor.setAttribute('class','RightDoor')
 
@@ -135,21 +136,37 @@ function MoveLifts(targetFloor,direction) {
     closest.setNewStatus(currentStatus);
     const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2000;
     updateLiftPositions(closest, targetFloor, timeToReach);
+   
     setTimeout(() => {
+        
         closest.updateFloorNo(targetFloor);
-      
         const currentLift=closest.element;
-        currentLift.classList.add('opening-door');
+
+        const leftDoor=currentLift.getElementsByTagName('div')[0];
+        const rightDoor=currentLift.getElementsByTagName('div')[1];
+
+        leftDoor.style.transitionDuration = "3s";
+        leftDoor.style.transform = `translateX(-30px)`;
+       
+        rightDoor.style.transitionDuration = "3s";
+        rightDoor.style.transform = `translateX(30px)`;
+         
         setTimeout(() => {
-           currentLift.classList.remove('opening-door');
-           currentLift.classList.add('closing-door');
-           setTimeout(()=>{
-              currentLift.classList.remove('closing-door');
+
+          leftDoor.style.transitionDuration = "3s";
+          leftDoor.style.transform = `translateX(0px)`;
+
+          rightDoor.style.transitionDuration = "3s";
+          rightDoor.style.transform = `translateX(0px)`;
+           
+          setTimeout(()=>{
               closest.setNewStatus("idle");
            },2500)
+
         }, 2500);
 
     }, timeToReach);
+
 } else {
     // checking is it in queue or not
     const alreadyInQueue = requestQueue.some(

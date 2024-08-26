@@ -117,6 +117,7 @@ body{
     gap: 5px;
     justify-content: center;
     box-sizing: border-box;
+    padding-right: 40px;
 }
 
 #newBuilding>div>button{
@@ -141,40 +142,29 @@ body{
     height: 80px;
     width: 60px;
     min-width: 60px;
-    background: rgb(43, 238, 29);
+    background: rgb(227, 227, 227);
     border: 1px solid rebeccapurple;
     display: flex;
 }
 
 
 
-.opening-door{
-    /* background-color: rgb(251, 250, 251); */
-    border: 1px solid black;
-    background: rgb(116, 9, 165);
-    transition: all;
-    animation-duration: 2.5s;
-}
 
-.closing-door{
-    /* background: rgb(162, 0, 237);
-    transition: all;
-    animation-duration: 2.5s; */
-}
-
-/* .LeftDoor{
+.LeftDoor{
     border-right: 1px solid black;
     width: 30px;
     height: 80px;
-    background-color: greenyellow;
+    z-index: -20;
 }
+
+
+
 
 .RightDoor{
     border-left: 1px solid black;
     width: 30px;
     height: 80px;
-    background-color: greenyellow;
-} */
+}
 
 
 
