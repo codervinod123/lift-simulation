@@ -11,14 +11,16 @@ body{
    display: flex;
    flex-direction: column;
    padding-top: 30px;
-   align-items: center;
-   min-width: 100vw;
+   /* align-items: center; */
+   /* min-width: 100vw;
    min-height: 100vh;
-   overflow: auto;
+   width: 100%; */
+   overflow-x: auto;
    background-size: cover;
 }
 
 .container{
+    margin: auto;
     height: 40%;
     width: 40%;
     background: white;
@@ -97,12 +99,12 @@ body{
 
 
 #newBuilding{
-    width: 100vw;
-    overflow-y: auto;
+    margin: auto;
+    overflow-x: auto;
     margin-top: 50px;
+    margin-bottom: 20px;
     box-sizing: border-box;
     display: flex;
-    /* flex-direction: column; */
     flex-direction: column-reverse;
 }
 
@@ -110,6 +112,7 @@ body{
     border: 1px solid rgb(37, 33, 33);
     height: 80px;
     display: flex;
+    width: full;
     flex-direction: column;
     gap: 5px;
     justify-content: center;
@@ -132,19 +135,13 @@ body{
     gap: 40px;
 }
 
-.floor_lift{
-     background: yellow;
-     height: 80px;
-     width: 60px;
-     position: relative;
-}
 
 
 .liftsss{
     height: 80px;
     width: 60px;
     min-width: 60px;
-    background: goldenrod;
+    background: rgb(43, 238, 29);
     border: 1px solid rebeccapurple;
     display: flex;
 }
@@ -154,14 +151,18 @@ body{
 .opening-door{
     /* background-color: rgb(251, 250, 251); */
     border: 1px solid black;
-    background: transparent;
+    background: rgb(116, 9, 165);
+    transition: all;
+    animation-duration: 2.5s;
 }
 
 .closing-door{
-    background: rgb(162, 0, 237);
+    /* background: rgb(162, 0, 237);
+    transition: all;
+    animation-duration: 2.5s; */
 }
 
-.LeftDoor{
+/* .LeftDoor{
     border-right: 1px solid black;
     width: 30px;
     height: 80px;
@@ -173,7 +174,7 @@ body{
     width: 30px;
     height: 80px;
     background-color: greenyellow;
-}
+} */
 
 
 
@@ -196,4 +197,14 @@ body{
         background: white;
         border-radius: 5px;
     }
+
+    .liftsss{
+        height: 80px;
+        width: 30px;
+        min-width: 60px;
+        background: rgb(11, 36, 223);
+        border: 1px solid rebeccapurple;
+        display: flex;
+    }
+
 }

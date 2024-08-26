@@ -47,8 +47,8 @@ function submitUserData() {
   // no of Floor in a building by a user
   let NO_OF_FLOOR = document.querySelector("#floor").value;
   // atleast building should have 2 floors
-  if(NO_OF_FLOOR<2){
-    alert("No of Floor should be atleast 2");
+  if(NO_OF_FLOOR<1){
+    alert("No of Floor should be atleast 1");
     return;
   }
 
@@ -74,6 +74,13 @@ function createBuildingAndLift(NO_OF_FLOOR,NO_OF_LIFT){
     floor.setAttribute('id', `floor${i}`);
     floor.setAttribute('class', 'floor');
     floor.dataset.floor=i;
+    if(NO_OF_FLOOR==1){
+      const floorButton = document.createElement('button');
+      floorButton.setAttribute('id', `downButton${i}`)
+      floorButton.innerHTML =`<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/>`; 
+      floorButton.setAttribute('onclick', `MoveLifts(${i},'movingUp')`);
+      floor.appendChild(floorButton);
+    }
     if (i != 0) {
       const floorButton = document.createElement('button');
       floorButton.setAttribute('id', `upButton${i}`)
@@ -139,8 +146,8 @@ function MoveLifts(targetFloor,direction) {
            setTimeout(()=>{
               currentLift.classList.remove('closing-door');
               closest.setNewStatus("idle");
-           },1200)
-        }, 1200);
+           },2500)
+        }, 2500);
 
     }, timeToReach);
 } else {
