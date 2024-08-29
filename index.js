@@ -120,6 +120,8 @@ function MoveLifts(targetFloor,direction) {
 
   // getting the nearest idle lift
   for (const lift of lifts) {
+
+    console.log("STATUS OF LIFTS=>",lift);
       if (lift.status === "idle") {
           const currentF= lift.currentFloor ;
           const distance = Math.abs(currentF - targetFloor);
@@ -130,7 +132,10 @@ function MoveLifts(targetFloor,direction) {
       }
   }
 
+  
+
   if (closest) {
+
     //move the nearest lift to the requested floor ans set the status accordingly
     const currentStatus = targetFloor > closest.currentFloor ? "moving_up" : "moving_down";
     closest.setNewStatus(currentStatus);
@@ -161,6 +166,7 @@ function MoveLifts(targetFloor,direction) {
            
           setTimeout(()=>{
               closest.setNewStatus("idle");
+              processQueue()
            },2500)
 
         }, 2500);
@@ -175,6 +181,7 @@ function MoveLifts(targetFloor,direction) {
     // if it is not availabe in queue then it will be pushed to queue as a new entry otherwise it will be executed as soon as the lift get idle ststus
     if (!alreadyInQueue) {
         requestQueue.push({ targetFloor, direction });
+        console.log(requestQueue);
     }
 }
 }
@@ -192,6 +199,7 @@ function processQueue() {
   if (requestQueue.length > 0) {
       // Removing entry from queue and destructring taeget and direction
       const { targetFloor, direction } = requestQueue.shift();
+      console.log("INSIDE QUEUE DATA======>", "targetFloor=>", targetFloor, "direction=>", direction );
       //again calling the Movelifts dunction according to queue entry
       MoveLifts(targetFloor, direction);
   }
