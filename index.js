@@ -9,7 +9,8 @@ function createLift(id) {
   const lift = {
 
     id: id,
-    status: 'idle',  // idle moving_up moving_down
+    // idle moving_up moving_down
+    status: 'idle',  
     currentFloor: 0,
     targetFloor: null,
     direction: null,
@@ -75,6 +76,15 @@ const numberInput1 = document.getElementById('floor')
 
 function submitUserData() {
 
+
+  let building = document.getElementById("newBuilding");
+  building.innerHTML = "";
+  lifts = [];
+  requestQueue = [];
+
+
+
+
   // no of Floor in a building by a user
   let NO_OF_FLOOR = document.querySelector('#floor').value;
   // at least building should have 2 floors
@@ -92,8 +102,6 @@ function submitUserData() {
   }
 
   // based upon user input building and lift will be created
-  const building = document.getElementById('newBuilding');
-  building.innerHTML = '';
   createBuildingAndLift(NO_OF_FLOOR, NO_OF_LIFT);
 }
 
