@@ -218,17 +218,17 @@ function MoveLifts(targetFloor, direction) {
       const leftDoor = currentLift.getElementsByTagName('div')[0];
       const rightDoor = currentLift.getElementsByTagName('div')[1];
 
-      leftDoor.style.transitionDuration = '3s';
+      leftDoor.style.transitionDuration = '2.5s';
       leftDoor.style.transform = `translateX(-30px)`;
 
-      rightDoor.style.transitionDuration = '3s';
+      rightDoor.style.transitionDuration = '2.5s';
       rightDoor.style.transform = `translateX(30px)`;
 
       setTimeout(() => {
-        leftDoor.style.transitionDuration = '3s';
+        leftDoor.style.transitionDuration = '2.5s';
         leftDoor.style.transform = `translateX(0px)`;
 
-        rightDoor.style.transitionDuration = '3s';
+        rightDoor.style.transitionDuration = '2.5s';
         rightDoor.style.transform = `translateX(0px)`;
 
         setTimeout(() => {
