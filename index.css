@@ -110,7 +110,7 @@ body{
 
 #newBuilding>div{
     border: 1px solid rgb(37, 33, 33);
-    height: 80px;
+    height: 120px;
     display: flex;
     width: full;
     flex-direction: column;
@@ -197,4 +197,17 @@ body{
         display: flex;
     }
 
+}
+
+.grounf_button{
+    display: flex;
+    flex-direction: column;
+}
+
+.grounf_button>button{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }

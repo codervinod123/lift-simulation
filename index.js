@@ -77,6 +77,7 @@ const numberInput1 = document.getElementById('floor')
 function submitUserData() {
 
 
+  // resetting the previous states
   let building = document.getElementById("newBuilding");
   building.innerHTML = "";
   lifts = [];
@@ -117,21 +118,43 @@ function createBuildingAndLift(NO_OF_FLOOR, NO_OF_LIFT) {
       floorButton.setAttribute('id', `downButton${i}`);
       floorButton.innerHTML = `<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/>`;
       floorButton.setAttribute('onclick', `MoveLifts(${i},'up')`);
-      floor.appendChild(floorButton);
+
+
+      const groundFloor=document.createElement('div');
+      groundFloor.setAttribute('class','grounf_button')
+      groundFloor.innerHTML=`G Floor`
+      groundFloor.appendChild(floorButton);
+      floor.appendChild(groundFloor);
+
     }
     if (i != 0) {
       const floorButton = document.createElement('button');
       floorButton.setAttribute('id', `upButton${i}`);
       floorButton.innerHTML = `<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-down.png" alt="circled-chevron-down"/>`;
       floorButton.setAttribute('onclick', `MoveLifts(${i},'down')`);
+
+      const floorNo=document.createElement('div');
+      floor.innerHTML=`Floor${i}`
+       
+      
       floor.appendChild(floorButton);
+      floor.appendChild(floorNo);
     }
     if (i != NO_OF_FLOOR - 1) {
       const floorButton = document.createElement('button');
       floorButton.setAttribute('id', `downButton${i}`);
       floorButton.innerHTML = `<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/circled-chevron-up.png" alt="circled-chevron-up"/>`;
       floorButton.setAttribute('onclick', `MoveLifts(${i},'up')`);
+
       floor.appendChild(floorButton);
+      if(i===0){
+         const groundFloor=document.createElement('div');
+         groundFloor.setAttribute('class','grounf_button')
+         groundFloor.innerHTML=`G Floor`
+         groundFloor.appendChild(floorButton);
+         floor.appendChild(groundFloor);
+      }
+
     }
     const building = document.getElementById('newBuilding');
     building.appendChild(floor);
@@ -234,7 +257,7 @@ function MoveLifts(targetFloor, direction) {
 
 function updateLiftPositions(lift, targetFloor, timeToReach) {
   lift.element.style.transitionDuration = `${timeToReach}ms`;
-  lift.element.style.transform = `translateY(-${targetFloor * 80}px)`;
+  lift.element.style.transform = `translateY(-${targetFloor * 120}px)`;
 }
 
 // checking any pending request
