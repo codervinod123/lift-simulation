@@ -208,7 +208,7 @@ function MoveLifts(targetFloor, direction) {
     closest.targetFloor=targetFloor;
     closest.direction=direction;
 
-    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2500;
+    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2000;
     updateLiftPositions(closest, targetFloor, timeToReach);
 
     setTimeout(() => {
@@ -256,8 +256,9 @@ function MoveLifts(targetFloor, direction) {
 
 
 function updateLiftPositions(lift, targetFloor, timeToReach) {
-  lift.element.style.transitionDuration = `${timeToReach}ms`;
-  lift.element.style.transform = `translateY(-${targetFloor * 120}px)`;
+   lift.element.style.transitionDuration = `${timeToReach}ms`;
+   lift.element.style.transitionTimingFunction = 'linear';
+   lift.element.style.transform = `translateY(-${targetFloor * 120}px)`;
 }
 
 // checking any pending request
