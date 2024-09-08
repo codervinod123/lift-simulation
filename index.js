@@ -208,7 +208,7 @@ function MoveLifts(targetFloor, direction) {
     closest.targetFloor=targetFloor;
     closest.direction=direction;
 
-    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2000;
+    const timeToReach = Math.abs(targetFloor - closest.currentFloor) * 2500;
     updateLiftPositions(closest, targetFloor, timeToReach);
 
     setTimeout(() => {
