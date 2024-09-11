@@ -175,6 +175,34 @@ function createBuildingAndLift(NO_OF_FLOOR, NO_OF_LIFT) {
 
 function checkIfLiftMovingToTargetFloor(targetFloor, direction) {
     const lift = lifts.find(lift => lift.targetFloor === targetFloor && lift.direction === direction)
+
+
+   if(lift){
+      const currentLift = lift.element;
+
+      const leftDoor = currentLift.getElementsByTagName('div')[0];
+      const rightDoor = currentLift.getElementsByTagName('div')[1];
+
+      leftDoor.style.transitionDuration = '2.5s';
+      leftDoor.style.transform = `translateX(-30px)`;
+
+      rightDoor.style.transitionDuration = '2.5s';
+      rightDoor.style.transform = `translateX(30px)`;
+
+      setTimeout(() => {
+        leftDoor.style.transitionDuration = '2.5s';
+        leftDoor.style.transform = `translateX(0px)`;
+
+        rightDoor.style.transitionDuration = '2.5s';
+        rightDoor.style.transform = `translateX(0px)`;
+
+        setTimeout(() => {
+          closest.setNewStatus('idle');
+          processQueue();
+        }, 2500);
+      }, 2500);
+    }
+
     console.log(lift)
     return lift ? true : false
 }
