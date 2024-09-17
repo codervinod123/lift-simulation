@@ -176,8 +176,9 @@ function createBuildingAndLift(NO_OF_FLOOR, NO_OF_LIFT) {
 function checkIfLiftMovingToTargetFloor(targetFloor, direction) {
     const lift = lifts.find(lift => lift.targetFloor === targetFloor && lift.direction === direction)
 
+  
 
-   if(lift){
+   if(lift && lift.status=="idle"){
       const currentLift = lift.element;
 
       const leftDoor = currentLift.getElementsByTagName('div')[0];
